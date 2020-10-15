@@ -39,7 +39,12 @@ class HobbyController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //dd($request);
+        $request->validate(
+            [
+                'name' => 'required|min:5',
+                'beschreibung' => 'required|min:5',
+            ]
+        );
         $hobby = new Hobby(
             $request->all()
         );
