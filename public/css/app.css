@@ -4618,6 +4618,19 @@ readers do not read off random characters that represent icons */
   font-weight: 800;
 }
 
+.list-form {
+  display: inline;
+}
+
+.list-group-item.hobbies-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.list-group-item.hobbies-list-item span {
+  margin-right: auto;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

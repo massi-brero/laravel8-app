@@ -11,7 +11,7 @@
 
                 <div class="card-body">
                     Willkommen bei Massis MyHobbies!
-                    <span class="btn btn-primary"><i class="fas fa-stop-circle"> Los!</i></span>
+                    <a class="btn btn-primary fa-pull-right" href="/hobby"><i class="fas fa-stop-circle"> Los!</i></a>
                 </div>
             </div>
         </div>

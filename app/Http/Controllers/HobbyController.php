@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Hobby;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class HobbyController extends Controller
@@ -37,7 +36,7 @@ class HobbyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): View
     {
         $request->validate(
             [
@@ -50,7 +49,11 @@ class HobbyController extends Controller
         );
         $hobby->save();
 
-        return redirect('hobby');
+        //return redirect('hobby');
+
+        return $this->index()->with([
+            'msg_success' => 'Das Hobby ' . $hobby->name . ' wurde angelegt!'
+        ]);
     }
 
     /**
@@ -59,9 +62,9 @@ class HobbyController extends Controller
      * @param  \App\Models\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function show(Hobby $hobby)
+    public function show(Hobby $hobby): View
     {
-        //
+        return view('hobby.show')->with('hobby', $hobby);
     }
 
     /**
@@ -70,9 +73,9 @@ class HobbyController extends Controller
      * @param  \App\Models\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hobby $hobby)
+    public function edit(Hobby $hobby): View
     {
-        //
+        return view('hobby.edit')->with('hobby', $hobby);
     }
 
     /**
@@ -82,9 +85,21 @@ class HobbyController extends Controller
      * @param  \App\Models\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hobby $hobby)
+    public function update(Request $request, Hobby $hobby): View
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|min:5',
+                'beschreibung' => 'required|min:5',
+            ]
+        );
+        $hobby->update(
+            $request->all()
+        );
+
+        return $this->index()->with([
+            'msg_success' => 'Das Hobby ' . $request->name . ' wurde aktualisiert!'
+        ]);
     }
 
     /**
@@ -93,8 +108,13 @@ class HobbyController extends Controller
      * @param  \App\Models\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hobby $hobby)
+    public function destroy(Hobby $hobby): View
     {
-        //
-    }
+        $hobby->delete();
+        $hobbyName = $hobby->name;
+
+        return $this->index()->with([
+            'msg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
+        ]);
+;    }
 }

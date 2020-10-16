@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-4">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     MyHobbies
@@ -82,6 +82,13 @@
             </div>
         </nav>
 
+        @isset($msg_success)
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                {!! $msg_success !!}
+            </div>
+        </div>
+        @endisset
         <main class="py-4">
             @if($errors->any())
                 <div class="container">

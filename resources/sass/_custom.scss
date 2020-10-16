@@ -7,3 +7,16 @@
     text-transform: capitalize;
     font-weight: 800;
 }
+
+.list-form {
+    display: inline;
+}
+
+.list-group-item.hobbies-list-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item.hobbies-list-item span {
+    margin-right: auto;
+}

@@ -9,12 +9,26 @@
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach($hobbies as $hobby)
-                                <li class="list-group-item">
-                                    {{$hobby->name}}
+                                <li class="list-group-item hobbies-list-item">
+                                    <span>{{$hobby->name}}</span>
+                                    <form action="/hobby/{{ $hobby->id }}" method="post" class="list-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit"
+                                               class="ml-2 btn btn-sm btn-outline-danger"
+                                               value="Löschen">
+                                    </form>
+                                    <a class="ml-2 btn btn-sm btn-outline-primary"
+                                       href="hobby/{{$hobby->id}}">
+                                        <i class="fas fa-eye mr-1"></i>Details</a>
+                                    <a class="ml-2 btn btn-sm btn-outline-primary"
+                                       href="hobby/{{$hobby->id}}/edit">
+                                        <i class="fas fa-user-edit mr-1"></i>Bearbeiten</a>
                                 </li>
                             @endforeach
                         </ul>
-                        <a href="hobby/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i> Neues Hobby</a>
+                        <a href="/hobby/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i>
+                            Neues Hobby</a>
                     </div>
                 </div>
             </div>
