@@ -4622,12 +4622,12 @@ readers do not read off random characters that represent icons */
   display: inline;
 }
 
-.list-group-item.hobbies-list-item {
+.list-group-item.custom-list-item {
   display: flex;
   align-items: center;
 }
 
-.list-group-item.hobbies-list-item span {
+.list-group-item.custom-list-item span {
   margin-right: auto;
 }
 

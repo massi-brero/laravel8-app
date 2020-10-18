@@ -42,6 +42,9 @@
                             <a class="nav-link {{\Illuminate\Support\Facades\Request::is('hobby*') ? 'active' : ''}}" href="/hobby">Hobby</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{\Illuminate\Support\Facades\Request::is('tag*') ? 'active' : ''}}" href="/tag">Tags</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{\Illuminate\Support\Facades\Request::is('info') ? 'active' : ''}}" href="/info">Information</a>
                         </li>
                     </ul>

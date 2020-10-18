@@ -5,13 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Hobbies</div>
+                    <div class="card-header">Alle Tags</div>
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach($hobbies as $hobby)
+                            @foreach($tags as $tag)
                                 <li class="list-group-item custom-list-item">
-                                    <span>{{$hobby->name}}</span>
-                                    <form action="/hobby/{{ $hobby->id }}" method="post" class="list-form">
+                                    <span class="badge-{{$tag->style}}  badge-pill p-2">{{$tag->name}}</span>
+                                    <form action="/tag/{{ $tag->id }}" method="post" class="list-form">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit"
@@ -19,16 +19,13 @@
                                                value="Löschen">
                                     </form>
                                     <a class="ml-2 btn btn-sm btn-outline-primary"
-                                       href="hobby/{{$hobby->id}}">
-                                        <i class="fas fa-eye mr-1"></i>Details</a>
-                                    <a class="ml-2 btn btn-sm btn-outline-primary"
-                                       href="hobby/{{$hobby->id}}/edit">
+                                       href="tag/{{$tag->id}}/edit">
                                         <i class="fas fa-user-edit mr-1"></i>Bearbeiten</a>
                                 </li>
                             @endforeach
                         </ul>
-                        <a href="/hobby/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i>
-                            Neues Hobby</a>
+                        <a href="/tag/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i>
+                            Neues Tag</a>
                     </div>
                 </div>
             </div>
