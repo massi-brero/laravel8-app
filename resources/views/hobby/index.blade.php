@@ -29,6 +29,9 @@
                         </ul>
                         <a href="/hobby/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i>
                             Neues Hobby</a>
+                        <div class="mt-3">
+                            {{ $hobbies->links("pagination::bootstrap-4") }}
+                        </div>
                     </div>
                 </div>
             </div>

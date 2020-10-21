@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <p>{{ $hobby->name }}</p>
                         <p>{{ $hobby->beschreibung }}</p>
-                        <a href="/hobby" class="btn btn-success btn-sm mt-3"><i class="fas fa-arrow-circle-up"></i> Zurück</a>
+                        <a href="{{URL::previous()}}" class="btn btn-success btn-sm mt-3"><i class="fas fa-arrow-circle-up"></i> Zurück</a>
                     </div>
                 </div>
             </div>
