@@ -11,6 +11,8 @@
                             @foreach($hobbies as $hobby)
                                 <li class="list-group-item custom-list-item">
                                     <span>{{$hobby->name}}</span>
+                                    <div>von {{$hobby->user->name}} ({{$hobby->user->hobbies->count()}} Hobbies) --&nbsp;</div>
+                                    <div>  {{$hobby->created_at->diffForHumans()}}</div>
                                     <form action="/hobby/{{ $hobby->id }}" method="post" class="list-form">
                                         @csrf
                                         @method('DELETE')
@@ -27,8 +29,11 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <a href="/hobby/create" class="btn btn-success btn-sm mt-3"><i class="fas fa-search-plus"></i>
-                            Neues Hobby</a>
+                        @auth()
+                            <a href="/hobby/create" class="btn btn-success btn-sm mt-3"><i
+                                    class="fas fa-search-plus"></i>
+                                Neues Hobby</a>
+                        @endauth
                         <div class="mt-3">
                             {{ $hobbies->links("pagination::bootstrap-4") }}
                         </div>

@@ -6,6 +6,7 @@ use App\Models\Hobby;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 
 class HobbyController extends Controller
 {
@@ -17,7 +18,8 @@ class HobbyController extends Controller
     public function index(): View
     {
         // $hobbies = Hobby::all();
-        $hobbies = Hobby::paginate(10);
+//        $hobbies = Hobby::paginate(10);
+        $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
         return view('hobby.index')->with('hobbies', $hobbies);
     }
 
@@ -43,10 +45,13 @@ class HobbyController extends Controller
             [
                 'name' => 'required|min:5',
                 'beschreibung' => 'required|min:5',
+                'user_id' => 'exists:user,id'
             ]
         );
+        $data = $request->all();
+        $data['user_id'] = auth()->id();
         $hobby = new Hobby(
-            $request->all()
+            $data
         );
         $hobby->save();
 
@@ -118,6 +123,6 @@ class HobbyController extends Controller
 
         return $this->index()->with([
             'msg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
-        ]);
-;    }
+        ]);;
+    }
 }
