@@ -11,7 +11,7 @@
                             @foreach($hobbies as $hobby)
                                 <li class="list-group-item custom-list-item">
                                     <span>{{$hobby->name}}</span>
-                                    <div>von {{$hobby->user->name}} ({{$hobby->user->hobbies->count()}} Hobbies) --&nbsp;</div>
+                                    <div>von <a href="/user/{{$hobby->user->id}}">{{$hobby->user->name}}</a> ({{$hobby->user->hobbies->count()}} Hobbies) --&nbsp;</div>
                                     <div>  {{$hobby->created_at->diffForHumans()}}</div>
                                     <form action="/hobby/{{ $hobby->id }}" method="post" class="list-form">
                                         @csrf
