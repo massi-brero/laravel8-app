@@ -9,6 +9,6 @@ class HobbyTagController extends Controller
 {
     public function getFilteredHobbies(int $tagId)
     {
-        dd($tag->id);
+        dd($tagId);
     }
 }
