@@ -4625,10 +4625,15 @@ readers do not read off random characters that represent icons */
 .list-group-item.custom-list-item {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .list-group-item.custom-list-item span {
   margin-right: auto;
+}
+
+.list-group-item.custom-list-item .list-badges {
+  flex-basis: 100%;
 }
 
 /*!

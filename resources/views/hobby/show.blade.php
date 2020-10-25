@@ -9,6 +9,11 @@
                     <div class="card-body">
                         <p>{{ $hobby->name }}</p>
                         <p>{{ $hobby->beschreibung }}</p>
+                        <div class="list-badges">
+                            @foreach($hobby->tags as $tag)
+                                <a class="badge badge-{{$tag->style}}" href="">{{$tag->name}}</a>
+                            @endforeach
+                        </div>
                         <a href="{{URL::previous()}}" class="btn btn-success btn-sm mt-3"><i class="fas fa-arrow-circle-up"></i> Zurück</a>
                     </div>
                 </div>

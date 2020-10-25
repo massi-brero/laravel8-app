@@ -11,7 +11,9 @@
                             @foreach($hobbies as $hobby)
                                 <li class="list-group-item custom-list-item">
                                     <span>{{$hobby->name}}</span>
-                                    <div>von <a href="/user/{{$hobby->user->id}}">{{$hobby->user->name}}</a> ({{$hobby->user->hobbies->count()}} Hobbies) --&nbsp;</div>
+                                    <div>von <a href="/user/{{$hobby->user->id}}">{{$hobby->user->name}}</a>
+                                        ({{$hobby->user->hobbies->count()}} Hobbies) --&nbsp;
+                                    </div>
                                     <div>  {{$hobby->created_at->diffForHumans()}}</div>
                                     <form action="/hobby/{{ $hobby->id }}" method="post" class="list-form">
                                         @csrf
@@ -26,6 +28,11 @@
                                     <a class="ml-2 btn btn-sm btn-outline-primary"
                                        href="hobby/{{$hobby->id}}/edit">
                                         <i class="fas fa-user-edit mr-1"></i>Bearbeiten</a>
+                                    <div class="list-badges">
+                                        @foreach($hobby->tags as $tag)
+                                            <a class="badge badge-{{$tag->style}}" href="/hobby/tag/{{$tag->id}}">{{$tag->name}}</a>
+                                        @endforeach
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>

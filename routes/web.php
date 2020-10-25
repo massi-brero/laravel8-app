@@ -30,3 +30,5 @@ Route::resource('hobby', 'App\Http\Controllers\HobbyController');
 Route::resource('tag', 'App\Http\Controllers\TagController');
 
 Route::resource('user', 'App\Http\Controllers\UserController');
+
+Route::get('/hobby/tag/{tag_id}', [App\Http\Controllers\HobbyTagController::class, 'getFilteredHobbies'])->name('hobby_tag');

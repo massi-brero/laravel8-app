@@ -15,8 +15,13 @@
 .list-group-item.custom-list-item {
     display: flex;
     align-items: center;
-}
+    flex-wrap: wrap;
 
-.list-group-item.custom-list-item span {
-    margin-right: auto;
+    span {
+        margin-right: auto;
+    }
+
+    .list-badges {
+        flex-basis: 100%;
+    }
 }
