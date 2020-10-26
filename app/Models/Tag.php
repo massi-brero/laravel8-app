@@ -17,4 +17,11 @@ class Tag extends Model
     {
         return $this->belongsToMany(Hobby::class);
     }
+
+    public function filteredHobbies()
+    {
+        return $this->belongsToMany(Hobby::class)
+                    ->wherePivot('tag_id', $this->id)
+                    ->orderBy('updated_at', 'DESC');
+    }
 }

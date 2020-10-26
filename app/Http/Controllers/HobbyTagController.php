@@ -9,6 +9,12 @@ class HobbyTagController extends Controller
 {
     public function getFilteredHobbies(int $tagId)
     {
-        dd($tagId);
+        $filteredHobbies = Tag::findOrFail($tagId)
+                              ->filteredHobbies()
+                              ->paginate(10);
+
+        return view('hobby.filteredByTag')->with([
+            'hobbies' => $filteredHobbies
+        ]);
     }
 }
