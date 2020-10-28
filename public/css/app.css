@@ -4636,6 +4636,10 @@ readers do not read off random characters that represent icons */
   flex-basis: 100%;
 }
 
+.card-header span {
+  font-size: 1.05rem;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
