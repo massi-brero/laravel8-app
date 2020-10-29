@@ -13,7 +13,7 @@ class HobbyTagController extends Controller
         $filteredHobbies = $tag->filteredHobbies()
                               ->paginate(10);
 
-        return view('hobby.filteredByTag')->with([
+        return view('hobby.filteredByTag', [
             'hobbies' => $filteredHobbies,
             'tag' => $tag
         ]);

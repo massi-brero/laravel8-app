@@ -1,0 +1,17 @@
+.error {
+    &__404 {
+        background-size: cover;
+        background: url("../../public/img/error-404-image.jpg") no-repeat center;
+
+        &-headlines {
+            color: white;
+            font-size: 1.8rem;
+            margin: 100px auto;
+        }
+    }
+}
+
+h1 {
+    font-size: 8rem;
+    color: red;
+}
