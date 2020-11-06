@@ -32,3 +32,6 @@ Route::resource('tag', 'App\Http\Controllers\TagController');
 Route::resource('user', 'App\Http\Controllers\UserController');
 
 Route::get('/hobby/tag/{tag_id}', [App\Http\Controllers\HobbyTagController::class, 'getFilteredHobbies'])->name('hobby_tag');
+
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', [App\Http\Controllers\HobbyTagController::class, 'attachTag'])->name('attach_tag');
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', [App\Http\Controllers\HobbyTagController::class, 'detachTag'])->name('detach_tag');

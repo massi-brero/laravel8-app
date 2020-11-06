@@ -10,11 +10,18 @@
                         <p>{{ $hobby->name }}</p>
                         <p>{{ $hobby->beschreibung }}</p>
                         <div class="list-badges">
+                            <e>Verknüpfte Tags:</e> (Klicken zum Entfernen)
                             @foreach($hobby->tags as $tag)
-                                <a class="badge badge-{{$tag->style}}" href="/hobby/tag/{{$tag->id}}">{{$tag->name}}</a>
+                                <a class="badge badge-{{$tag->style}}" href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/detach">{{$tag->name}}</a>
                             @endforeach
                         </div>
-                        <a href="{{URL::previous()}}" class="btn btn-success btn-sm mt-3"><i class="fas fa-arrow-circle-up"></i> Zurück</a>
+                        <div class="list-badges">
+                            <e>Verfügbare Tags:</e> (Klicken zum Hinzufügen)
+                            @foreach($available_tags as $tag)
+                                <a class="badge badge-{{$tag->style}}" href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/attach">{{$tag->name}}</a>
+                            @endforeach
+                        </div>
+                        <a href="{{URL::previous()}}" class="btn btn-success btn-sm mt-3" href="/hobby"><i class="fas fa-arrow-circle-up"></i> Zurück</a>
                     </div>
                 </div>
             </div>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hobby;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class HobbyController extends Controller
 {
@@ -70,7 +72,13 @@ class HobbyController extends Controller
      */
     public function show(Hobby $hobby): View
     {
-        return view('hobby.show')->with('hobby', $hobby);
+        $allTags = Tag::all();
+
+        return view('hobby.show')->with([
+            'hobby' => $hobby,
+            'msg_success' => Session::get('msg_success'),
+            'available_tags' => $allTags->diff($hobby->tags)
+        ]);
     }
 
     /**
