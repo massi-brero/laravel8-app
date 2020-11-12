@@ -4632,8 +4632,9 @@ readers do not read off random characters that represent icons */
   margin-right: auto;
 }
 
-.list-group-item.custom-list-item .list-badges {
+.list-badges {
   flex-basis: 100%;
+  margin-bottom: 1rem;
 }
 
 .card-header span {
