@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class HobbyController extends Controller
@@ -23,7 +22,10 @@ class HobbyController extends Controller
         // $hobbies = Hobby::all();
 //        $hobbies = Hobby::paginate(10);
         $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
-        return view('hobby.index')->with('hobbies', $hobbies);
+        return view('hobby.index')->with([
+            'hobbies', $hobbies,
+            'msg_success' => Session::get('msg_success')
+        ]);
     }
 
     /**
@@ -72,7 +74,6 @@ class HobbyController extends Controller
     public function show(Hobby $hobby): View
     {
         $allTags = Tag::all();
-
 
         return view('hobby.show')->with([
             'hobby' => $hobby,
@@ -125,13 +126,13 @@ class HobbyController extends Controller
      * @throws \Exception
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function destroy(Hobby $hobby): View
+    public function destroy(Hobby $hobby): RedirectResponse
     {
-        $hobby->delete();
         $hobbyName = $hobby->name;
+        $hobby->delete();
 
-        return $this->index()->with([
+        return back()->with([
             'msg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
-        ]);;
+        ]);
     }
 }

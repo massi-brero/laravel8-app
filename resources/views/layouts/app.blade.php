@@ -49,7 +49,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{\Illuminate\Support\Facades\Request::is('hobby*') ? 'active' : ''}}"
-                           href="/hobby">Hobby</a>
+                           href="/hobby">Hobbies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{\Illuminate\Support\Facades\Request::is('tag*') ? 'active' : ''}}"
