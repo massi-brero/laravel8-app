@@ -98,17 +98,17 @@
         </div>
     </nav>
 
-    @isset($msg_success)
+    @isset($meldg_success)
         <div class="container">
             <div class="alert alert-success" role="alert">
-                {!! $msg_success !!}
+                {!! $meldg_success !!}
             </div>
         </div>
     @endisset
-    @isset($msg_hinweis)
+    @isset($meldg_hinweis)
         <div class="container">
             <div class="alert alert-warning" role="alert">
-                {!! $msg_hinweis !!}
+                {!! $meldg_hinweis !!}
             </div>
         </div>
     @endisset

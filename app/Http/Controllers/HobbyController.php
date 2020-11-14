@@ -24,7 +24,7 @@ class HobbyController extends Controller
         $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
         return view('hobby.index')->with([
             'hobbies' => $hobbies,
-            'msg_success' => Session::get('msg_success')
+            'meldg_success' => Session::get('meldg_success')
         ]);
     }
 
@@ -60,10 +60,10 @@ class HobbyController extends Controller
         );
         $hobby->save();
 
-        return redirect('/hobby/' . $hobby->id)->with('msg_hinweis', 'Bitte weise ein paar Tags zu ');
+        return redirect('/hobby/' . $hobby->id)->with('meldg_hinweis', 'Bitte weise ein paar Tags zu ');
 //
 /*        return $this->index()->with([
-            'msg_success' => 'Das Hobby ' . $hobby->name . ' wurde angelegt!'
+            'meldg_success' => 'Das Hobby ' . $hobby->name . ' wurde angelegt!'
         ]);*/
     }
 
@@ -77,9 +77,9 @@ class HobbyController extends Controller
 
         return view('hobby.show')->with([
             'hobby' => $hobby,
-            'msg_success' => Session::get('msg_success'),
-            'msg_hinweis' => Session::get('msg_hinweis'),
-            'available_tags' => $allTags->diff($hobby->tags)
+            'meldg_success' => Session::get('meldg_success'),
+            'meldg_hinweis' => Session::get('meldg_hinweis'),
+            'verfuegbareTags' => $allTags->diff($hobby->tags)
         ]);
     }
 
@@ -114,7 +114,7 @@ class HobbyController extends Controller
         );
 
         return $this->index()->with([
-            'msg_success' => 'Das Hobby ' . $request->name . ' wurde aktualisiert!'
+            'meldg_success' => 'Das Hobby ' . $request->name . ' wurde aktualisiert!'
         ]);
     }
 
@@ -132,7 +132,7 @@ class HobbyController extends Controller
         $hobby->delete();
 
         return back()->with([
-            'msg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
+            'meldg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
         ]);
     }
 }

@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         return view('home')->with([
             'hobbies' => $hobbies,
-            'msg_success' => Session::get('msg_success')
+            'meldg_success' => Session::get('meldg_success')
         ]);
     }
 }
