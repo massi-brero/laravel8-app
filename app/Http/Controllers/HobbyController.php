@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 
 class HobbyController extends Controller
 {
@@ -19,8 +20,6 @@ class HobbyController extends Controller
      */
     public function index(): View
     {
-        // $hobbies = Hobby::all();
-//        $hobbies = Hobby::paginate(10);
         $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
         return view('hobby.index')->with([
             'hobbies' => $hobbies,
