@@ -20,7 +20,10 @@
                                     </form>
                                     <a class="ml-2 btn btn-sm btn-outline-primary"
                                        href="tag/{{$tag->id}}/edit">
-                                        <i class="fas fa-user-edit mr-1"></i>Bearbeiten</a>
+                                        <i class="fas fa-user-edit mr-1"></i>
+                                        Bearbeiten
+                                    </a>
+                                    <a href="/hobby/tag/{{$tag->id}}">&nbsp;{{$tag->hobbies->count()}} mal verwendet</a>
                                 </li>
                             @endforeach
                         </ul>

@@ -23,7 +23,7 @@ class HobbyController extends Controller
 //        $hobbies = Hobby::paginate(10);
         $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
         return view('hobby.index')->with([
-            'hobbies', $hobbies,
+            'hobbies' => $hobbies,
             'msg_success' => Session::get('msg_success')
         ]);
     }

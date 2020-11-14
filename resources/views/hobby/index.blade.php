@@ -8,6 +8,7 @@
                     <div class="card-header">Alle Hobbies</div>
                     <div class="card-body">
                         <ul class="list-group">
+
                             @isset($hobbies)
                                 @foreach($hobbies as $hobby)
                                     <li class="list-group-item custom-list-item">
