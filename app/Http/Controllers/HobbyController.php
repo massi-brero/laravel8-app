@@ -13,6 +13,10 @@ use Intervention\Image\Facades\Image;
 
 class HobbyController extends Controller
 {
+
+    const ORIENTATION_LANDSCAPE = 0;
+    const ORIENTATION_PORTRAIT = 1;
+
     /**
      * Display a listing of the resource.
      *
@@ -53,6 +57,8 @@ class HobbyController extends Controller
                 'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
+        //$this->processImage($hobby, $request);
+
         $data = $request->all();
         $data['user_id'] = auth()->id();
         $hobby = new Hobby(
@@ -61,10 +67,7 @@ class HobbyController extends Controller
         $hobby->save();
 
         return redirect('/hobby/' . $hobby->id)->with('meldg_hinweis', 'Bitte weise ein paar Tags zu ');
-//
-/*        return $this->index()->with([
-            'meldg_success' => 'Das Hobby ' . $hobby->name . ' wurde angelegt!'
-        ]);*/
+
     }
 
     /**
@@ -110,6 +113,9 @@ class HobbyController extends Controller
                 'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
+
+        $this->processImage($hobby, $request);
+
         $hobby->update(
             $request->all()
         );
@@ -135,5 +141,50 @@ class HobbyController extends Controller
         return back()->with([
             'meldg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
         ]);
+    }
+
+    private function processImage(Hobby $hobby, Request $request)
+    {
+        $basePath = public_path() . '/img/hobby/' . $hobby->id;
+        $formats = [
+            self::ORIENTATION_LANDSCAPE => [
+                    [
+                        'base_size' => 1200,
+                        'path' => $basePath . '_landscape_big.jpg',
+                    ],
+                    [
+                        'base_size' => 60,
+                        'path' => $basePath . '__andscape_thumb.jpg',
+                    ]
+                ],
+            self::ORIENTATION_PORTRAIT => [
+                [
+                    'base_size' => 900,
+                    'path' => $basePath . '_portrait_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_portrait_thumb.jpg',
+                ]
+            ]
+        ];
+
+        if ($request->bild) {
+            $image = Image::make($request->bild);
+            $width = $image->width();
+            $height = $image->height();
+
+            $orientation = $width > $height ? self::ORIENTATION_LANDSCAPE : self::ORIENTATION_PORTRAIT;;
+
+            foreach ($formats[$orientation] as $format) {
+                $newImage = Image::make($request->bild);
+                if ($orientation === self::ORIENTATION_LANDSCAPE) {
+                    $newImage->widen($format['base_size']);
+                } else {
+                    $newImage->heighten($format['base_size']);
+                }
+                $newImage->save($format['path']);
+            }
+        }
     }
 }
