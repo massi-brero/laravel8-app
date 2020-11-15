@@ -49,7 +49,8 @@ class HobbyController extends Controller
             [
                 'name' => 'required|min:5',
                 'beschreibung' => 'required|min:5',
-                'user_id' => 'exists:user,id'
+                'user_id' => 'exists:user,id',
+                'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
         $data = $request->all();
@@ -106,6 +107,7 @@ class HobbyController extends Controller
             [
                 'name' => 'required|min:5',
                 'beschreibung' => 'required|min:5',
+                'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
         $hobby->update(
