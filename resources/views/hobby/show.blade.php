@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -20,7 +19,8 @@
                                     <p>
                                         <b>Verknüpfte Tags:</b> (klicken, zum entfernen)<br>
                                         @foreach($hobby->tags as $tag)
-                                            <a class="badge badge-{{$tag->style}}" href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/detach">{{ $tag->name }}</a>
+                                            <a class="badge badge-{{$tag->style}}"
+                                               href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/detach">{{ $tag->name }}</a>
                                         @endforeach
                                     </p>
                                 @endif
@@ -28,23 +28,36 @@
                                 <p>
                                     <b>Verfügbare Tags:</b> (klicken, zum hinzufügen)<br>
                                     @foreach($verfuegbareTags as $tag)
-                                        <a class="badge badge-{{$tag->style}}" href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/attach">{{ $tag->name }}</a>
+                                        <a class="badge badge-{{$tag->style}}"
+                                           href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/attach">{{ $tag->name }}</a>
                                     @endforeach
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <a class="mr-1" title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
-                                    @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_big.jpg'))
-                                        <a href="/img/hobby/{{$hobby->id}}_landscape_big.jpg" data-lightbox="{{$hobby->id}}_landscape_big.jpg" data-title="{{ $hobby->name }}">
-                                            <img class="img-fluid" src="/img/hobby/{{$hobby->id}}_landscape_big.jpg" alt="">
+
+                                @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_big.jpg'))
+                                    @auth()
+                                        <a class="mr-1" title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
+                                            <a href="/img/hobby/{{$hobby->id}}_landscape_big.jpg"
+                                               data-lightbox="{{$hobby->id}}_landscape_big.jpg"
+                                               data-title="{{ $hobby->name }}">
+                                                <img class="img-fluid" src="/img/hobby/{{$hobby->id}}_landscape_big.jpg"
+                                                     alt="">
+                                            </a>
+                                            <i class="fa fa-search-plus mt-2"></i> Bild anklicken zum Vergrößern
                                         </a>
-                                    @endif
-                                </a>
-                                <i class="fa fa-search-plus mt-2"></i> Bild anklicken zum Vergrößern
+                                    @endauth
+                                    @guest()
+                                        <img class="img-fluid"
+                                             src="/img/hobby/{{$hobby->id}}_landscape_big_pixelated.jpg"
+                                             alt="">
+                                    @endguest
+                                @endif
                             </div>
                         </div>
 
-                        <a class="btn btn-success btn-sm mt-3" href="/hobby"><i class="fas fa-arrow-circle-up"></i> Zurück zur Übersicht</a>
+                        <a class="btn btn-success btn-sm mt-3" href="/hobby"><i class="fas fa-arrow-circle-up"></i>
+                            Zurück zur Übersicht</a>
                     </div>
                 </div>
             </div>

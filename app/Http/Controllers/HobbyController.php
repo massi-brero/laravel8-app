@@ -184,6 +184,13 @@ class HobbyController extends Controller
                     $newImage->heighten($format['base_size']);
                 }
                 $newImage->save($format['path']);
+                $explPath = explode('.', $format['path']);
+                $filename = $explPath[sizeof($explPath)-2];
+                $explPath[sizeof($explPath)-2] = $filename . '_pixelated';
+                $pixelatedPath = explode('.', $format['path']);
+                $pixelatedPath = implode('.', $explPath);
+                $newImage->pixelate(16)
+                         ->save($pixelatedPath);
             }
         }
     }
