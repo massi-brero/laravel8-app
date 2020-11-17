@@ -7,7 +7,8 @@
                 <div class="card">
                     <div class="card-header">Hobby bearbeiten</div>
                     <div class="card-body">
-                        <form action="/hobby/{{ $hobby->id }}" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <form action="/hobby/{{ $hobby->id }}" method="post" enctype="multipart/form-data"
+                              autocomplete="off">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -18,6 +19,14 @@
                                        name="name"
                                        value="{{ old('name') ?? $hobby->name }}">
                                 <small class="text text-danger">{!! $errors->first('name') !!}</small>
+                            </div>
+                            <div class="mb-2">
+                                @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_big.jpg'))
+                                    <img class="edit-img" src="/img/hobby/{{ $hobby->id  }}_landscape_big.jpg"
+                                         alt="thumb">
+                                @else()
+                                    <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="form-group">

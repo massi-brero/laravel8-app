@@ -154,7 +154,7 @@ class HobbyController extends Controller
                     ],
                     [
                         'base_size' => 60,
-                        'path' => $basePath . '__andscape_thumb.jpg',
+                        'path' => $basePath . '_landscape_thumb.jpg',
                     ]
                 ],
             self::ORIENTATION_PORTRAIT => [

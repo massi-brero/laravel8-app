@@ -4836,6 +4836,18 @@ body.lb-disable-scrolling {
   font-size: 1.05rem;
 }
 
+.edit-img {
+  max-width: 200px;
+}
+
+.thumb-landscape {
+  width: 60px;
+}
+
+.thumb-portrait {
+  width: 60px;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

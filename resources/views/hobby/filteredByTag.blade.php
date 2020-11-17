@@ -16,7 +16,12 @@
                                 <li class="list-group-item">
 
                                     <a class="mr-1" title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
-                                        <img src="/img/thumb_quer.jpg" alt="thumb"></a>
+                                        @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_thumb.jpg'))
+                                            <img src="/img/hobby/{{ $hobby->id  }}_landscape_thumb.jpg" alt="thumb">
+                                        @else()
+                                            <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
+                                        @endif
+                                    </a>
 
                                     {{ $hobby->name }} <a class="ml-2" href="/hobby/{{ $hobby->id }}">Detailansicht</a>
 
