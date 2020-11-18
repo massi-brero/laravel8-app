@@ -24,6 +24,9 @@
                                 @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_big.jpg'))
                                     <img class="edit-img" src="/img/hobby/{{ $hobby->id  }}_landscape_big.jpg"
                                          alt="thumb">
+                                    <div class="float-right">
+                                        <a class="btn btn-small btn-danger" href="/hobby/{{ $hobby->id }}/delete-image">Bild löschen</a>
+                                    </div>
                                 @else()
                                     <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
                                 @endif

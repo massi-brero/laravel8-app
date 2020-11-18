@@ -35,3 +35,4 @@ Route::get('/hobby/tag/{tag_id}', [App\Http\Controllers\HobbyTagController::clas
 
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', [App\Http\Controllers\HobbyTagController::class, 'attachTag'])->name('attach_tag');
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', [App\Http\Controllers\HobbyTagController::class, 'detachTag'])->name('detach_tag');
+Route::get('/hobby/{hobby_id}/delete-image', [App\Http\Controllers\HobbyController::class, 'deleteImages'])->name('delete_image');
