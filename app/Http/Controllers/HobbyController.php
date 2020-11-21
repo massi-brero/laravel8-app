@@ -154,29 +154,7 @@ class HobbyController extends Controller
     private function processImage(Hobby $hobby, Request $request): void
     {
         $basePath = $this->getBasepath($hobby->id);
-
-        $formats = [
-            self::ORIENTATION_LANDSCAPE => [
-                    [
-                        'base_size' => 1200,
-                        'path' => $basePath . '_landscape_big.jpg',
-                    ],
-                    [
-                        'base_size' => 60,
-                        'path' => $basePath . '_landscape_thumb.jpg',
-                    ]
-                ],
-            self::ORIENTATION_PORTRAIT => [
-                [
-                    'base_size' => 900,
-                    'path' => $basePath . '_portrait_big.jpg',
-                ],
-                [
-                    'base_size' => 60,
-                    'path' => $basePath . '_portrait_thumb.jpg',
-                ]
-            ]
-        ];
+        $formats = $this->getImageFormats($basePath);
 
         if ($request->bild) {
             $image = Image::make($request->bild);
@@ -221,5 +199,36 @@ class HobbyController extends Controller
     {
         $basePath = public_path() . '/img/hobby/' . $hobbyId;
         return $basePath;
+    }
+
+    /**
+     * @param string $basePath
+     * @return \array[][]
+     */
+    private function getImageFormats(string $basePath): array
+    {
+        $formats = [
+            self::ORIENTATION_LANDSCAPE => [
+                [
+                    'base_size' => 1200,
+                    'path' => $basePath . '_landscape_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_landscape_thumb.jpg',
+                ]
+            ],
+            self::ORIENTATION_PORTRAIT => [
+                [
+                    'base_size' => 900,
+                    'path' => $basePath . '_portrait_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_portrait_thumb.jpg',
+                ]
+            ]
+        ];
+        return $formats;
     }
 }
