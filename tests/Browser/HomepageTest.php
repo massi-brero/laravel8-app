@@ -16,7 +16,7 @@ class HomepageTest extends DuskTestCase
      */
     public function testHomePageBasic()
     {
-        $this->assertEquals('testing', env('APP_ENV'));
+        $this->assertEquals('local', env('APP_ENV'));
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->assertSee('Startseite');
