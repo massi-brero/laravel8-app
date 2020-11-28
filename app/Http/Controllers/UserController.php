@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Traits\ImageProcessor;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    use ImageProcessor;
+
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +69,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate(
             [
@@ -84,9 +89,7 @@ class UserController extends Controller
             $request->all()
         );
 
-        return $this->index()->with([
-            'meldg_success' => 'Der Nutzer ' . $request->name . ' wurde aktualisiert!'
-        ]);
+        return redirect('/home');
     }
 
     /**
@@ -97,36 +100,4 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * replace with configuration solution
-     *
-     * @param string $basePath
-     * @return \array[][]
-     */
-    private function getImageFormats(string $basePath): array
-    {
-        $formats = [
-            self::ORIENTATION_LANDSCAPE => [
-                [
-                    'base_size' => 1200,
-                    'path' => $basePath . '_landscape_big.jpg',
-                ],
-                [
-                    'base_size' => 60,
-                    'path' => $basePath . '_landscape_thumb.jpg',
-                ]
-            ],
-            self::ORIENTATION_PORTRAIT => [
-                [
-                    'base_size' => 900,
-                    'path' => $basePath . '_portrait_big.jpg',
-                ],
-                [
-                    'base_size' => 60,
-                    'path' => $basePath . '_portrait_thumb.jpg',
-                ]
-            ]
-        ];
-        return $formats;
-    }
 }

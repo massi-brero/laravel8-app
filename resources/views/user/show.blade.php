@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -21,14 +20,21 @@
                                             <li class="list-group-item">
 
                                                 <a title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
-                                                    <img src="/img/thumb_quer.jpg" alt="thumb"></a>
+                                                    @if (file_exists('img/hobby/' . $hobby->id . '_landscape_thumb.jpg'))
+                                                        <img src="/img/hobby/{{ $hobby->id }}_landscape_thumb.jpg"
+                                                             alt="thumb"></a>
+                                                @else
+                                                    <img src="/img/thumb_quer.jpg"
+                                                         alt="thumb"></a>
+                                                @endif
 
                                                 {{ $hobby->name }} <a class="ml-2" href="/hobby/{{ $hobby->id }}">Detailansicht</a>
 
                                                 <div class="float-right">{{ $hobby->created_at->diffForHumans() }}</div>
                                                 <br>
                                                 @foreach($hobby->tags as $tag)
-                                                    <a class="badge badge-{{$tag->style}}" href="/hobby/tag/{{ $tag->id }}">{{ $tag->name }}</a>
+                                                    <a class="badge badge-{{$tag->style}}"
+                                                       href="/hobby/tag/{{ $tag->id }}">{{ $tag->name }}</a>
                                                 @endforeach
                                             </li>
                                         @endforeach
@@ -43,7 +49,8 @@
                         </div>
 
 
-                        <a class="btn btn-success btn-sm mt-3" href="{{ URL::previous() }}"><i class="fas fa-arrow-circle-up"></i> Zurück zur Übersicht</a>
+                        <a class="btn btn-success btn-sm mt-3" href="/hobby"><i
+                                class="fas fa-arrow-circle-up"></i> Zurück zur Übersicht</a>
                     </div>
                 </div>
             </div>

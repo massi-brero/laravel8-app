@@ -69,4 +69,42 @@ trait ImageProcessor
         $pixelatedPath = implode('.', $explPath);
         return $pixelatedPath;
     }
+
+    public function setImageFormats()
+    {
+
+    }
+
+    /**
+     * replace with configuration solution
+     *
+     * @param string $basePath
+     * @return \array[][]
+     */
+    private function getImageFormats(string $basePath): array
+    {
+        $formats = [
+            self::ORIENTATION_LANDSCAPE => [
+                [
+                    'base_size' => 1200,
+                    'path' => $basePath . '_landscape_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_landscape_thumb.jpg',
+                ]
+            ],
+            self::ORIENTATION_PORTRAIT => [
+                [
+                    'base_size' => 900,
+                    'path' => $basePath . '_portrait_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_portrait_thumb.jpg',
+                ]
+            ]
+        ];
+        return $formats;
+    }
 }
