@@ -40,10 +40,8 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return View
      */
     public function show(User $user): View
     {
@@ -51,14 +49,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return View
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
-        //
+        return view('user.edit')->with('user', $user);
     }
 
     /**
@@ -70,17 +66,67 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate(
+            [
+                'motto' => 'required|min:5',
+                'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
+            ]
+        );
+
+        $this->processImage(
+            $request,
+            $this->getImageFormats(
+                $this->getBasepath($request, $user->id)
+            )
+        );
+
+        $user->update(
+            $request->all()
+        );
+
+        return $this->index()->with([
+            'meldg_success' => 'Der Nutzer ' . $request->name . ' wurde aktualisiert!'
+        ]);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
      */
     public function destroy(User $user)
     {
         //
+    }
+
+    /**
+     * replace with configuration solution
+     *
+     * @param string $basePath
+     * @return \array[][]
+     */
+    private function getImageFormats(string $basePath): array
+    {
+        $formats = [
+            self::ORIENTATION_LANDSCAPE => [
+                [
+                    'base_size' => 1200,
+                    'path' => $basePath . '_landscape_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_landscape_thumb.jpg',
+                ]
+            ],
+            self::ORIENTATION_PORTRAIT => [
+                [
+                    'base_size' => 900,
+                    'path' => $basePath . '_portrait_big.jpg',
+                ],
+                [
+                    'base_size' => 60,
+                    'path' => $basePath . '_portrait_thumb.jpg',
+                ]
+            ]
+        ];
+        return $formats;
     }
 }

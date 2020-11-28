@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hobby;
 use App\Models\Tag;
+use App\Traits\ImageProcessor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ class HobbyController extends Controller
 
     const ORIENTATION_LANDSCAPE = 0;
     const ORIENTATION_PORTRAIT = 1;
+
+    use ImageProcessor;
 
     /**
      * Display a listing of the resource.
@@ -114,7 +117,12 @@ class HobbyController extends Controller
             ]
         );
 
-        $this->processImage($hobby, $request);
+        $this->processImage(
+            $request,
+            $this->getImageFormats(
+                $this->getBasepath($request, $hobby->id)
+            )
+        );
 
         $hobby->update(
             $request->all()
@@ -141,64 +149,6 @@ class HobbyController extends Controller
         return back()->with([
             'meldg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
         ]);
-    }
-
-    public function deleteImages(int $hobbyId)
-    {
-        foreach (glob($this->getBasepath($hobbyId) . '*.*') as $filePath) {
-            unlink($filePath);
-        }
-        return back();
-    }
-
-    private function processImage(Hobby $hobby, Request $request): void
-    {
-        $basePath = $this->getBasepath($hobby->id);
-        $formats = $this->getImageFormats($basePath);
-
-        if ($request->bild) {
-            $image = Image::make($request->bild);
-            $width = $image->width();
-            $height = $image->height();
-
-            $orientation = $width > $height ? self::ORIENTATION_LANDSCAPE : self::ORIENTATION_PORTRAIT;;
-
-            foreach ($formats[$orientation] as $format) {
-                $newImage = Image::make($request->bild);
-                if ($orientation === self::ORIENTATION_LANDSCAPE) {
-                    $newImage->widen($format['base_size']);
-                } else {
-                    $newImage->heighten($format['base_size']);
-                }
-                $newImage->save($format['path']);
-                $pixelatedPath = $this->getPixelated($format['path']);
-                $newImage->pixelate(16)
-                         ->save($pixelatedPath);
-            }
-        }
-    }
-
-    /**
-     * @param $path
-     * @return string
-     */
-    private function getPixelated(string $path): string
-    {
-        $explPath = explode('.', $path);
-        $filename = $explPath[sizeof($explPath) - 2];
-        $explPath[sizeof($explPath) - 2] = $filename . '_pixelated';
-        $pixelatedPath = implode('.', $explPath);
-        return $pixelatedPath;
-    }
-
-    /**
-     * @param string $hobbyId
-     * @return string
-     */
-    private function getBasepath(string $hobbyId): string
-    {
-        $basePath = public_path() . '/img/hobby/' . $hobbyId;
-        return $basePath;
     }
 
     /**
