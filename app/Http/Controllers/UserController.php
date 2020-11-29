@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hobby;
 use App\Models\User;
 use App\Traits\ImageProcessor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends MyHobbiesBaseController
 {
 
     use ImageProcessor;
@@ -81,7 +82,7 @@ class UserController extends Controller
         $this->processImage(
             $request,
             $this->getImageFormats(
-                $this->getBasepath($request, $user->id)
+                $this->setImageBasepath($request, $user->id)
             )
         );
 
@@ -99,5 +100,4 @@ class UserController extends Controller
     {
         //
     }
-
 }

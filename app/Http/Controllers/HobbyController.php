@@ -10,16 +10,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
-use Intervention\Image\Facades\Image;
 
-class HobbyController extends Controller
+class HobbyController extends MyHobbiesBaseController
 {
-
-    const ORIENTATION_LANDSCAPE = 0;
-    const ORIENTATION_PORTRAIT = 1;
-
-    use ImageProcessor;
-
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +53,6 @@ class HobbyController extends Controller
                 'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
-        //$this->processImage($hobby, $request);
 
         $data = $request->all();
         $data['user_id'] = auth()->id();
@@ -68,6 +60,8 @@ class HobbyController extends Controller
             $data
         );
         $hobby->save();
+
+        $this->saveImages($request, $hobby->id);
 
         return redirect('/hobby/' . $hobby->id)->with('meldg_hinweis', 'Bitte weise ein paar Tags zu ');
 
@@ -117,12 +111,7 @@ class HobbyController extends Controller
             ]
         );
 
-        $this->processImage(
-            $request,
-            $this->getImageFormats(
-                $this->getBasepath($request, $hobby->id)
-            )
-        );
+        $this->saveImages($request, $hobby);
 
         $hobby->update(
             $request->all()
@@ -132,6 +121,8 @@ class HobbyController extends Controller
             'meldg_success' => 'Das Hobby ' . $request->name . ' wurde aktualisiert!'
         ]);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -150,4 +141,6 @@ class HobbyController extends Controller
             'meldg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
         ]);
     }
+
+
 }

@@ -8,27 +8,33 @@ use Intervention\Image\Facades\Image;
 
 trait ImageProcessor
 {
-    private $savePath = 'various';
+    private $orientationLandscape = 0;
+    private $orientationPortrait = 1;
 
-    private function processImage(Request $request, array $formats): void
+    private $imageTypeSubFolder = 'various';
+    private $imageFormats;
+    private $savePath;
+
+    private function processImage(Request $request): void
     {
 
+        $formats = $this->getImageFormats();
         if ($request->bild) {
             $image = Image::make($request->bild);
             $width = $image->width();
             $height = $image->height();
 
-            $orientation = $width > $height ? self::ORIENTATION_LANDSCAPE : self::ORIENTATION_PORTRAIT;;
+            $orientation = $width > $height ? $this->orientationLandscape : $this->orientationPortrait;;
 
             foreach ($formats[$orientation] as $format) {
                 $newImage = Image::make($request->bild);
-                if ($orientation === self::ORIENTATION_LANDSCAPE) {
+                if ($orientation === $this->orientationLandscape) {
                     $newImage->widen($format['base_size']);
                 } else {
                     $newImage->heighten($format['base_size']);
                 }
-                $newImage->save($format['path']);
-                $pixelatedPath = $this->getPixelated($format['path']);
+                $newImage->save($this->savePath . $format['imgName']);
+                $pixelatedPath = $this->getPixelatedImageName($this->savePath . $format['imgName']);
                 $newImage->pixelate(16)
                          ->save($pixelatedPath);
             }
@@ -36,32 +42,30 @@ trait ImageProcessor
     }
 
     /**
+     * @param Request $request
      * @param string $id
-     * @return string
      */
-    public function getBasepath(Request $request, string $id): string
+    public function setImageBasepath(Request $request, string $id): void
     {
-        $this->savePath = explode('/',$request->path())[0] ?? $this->savePath;
-        return public_path() . '/img/' . $this->savePath . '/' . $id;
+        $this->imageTypeSubFolder = explode('/',$request->path())[0] ?? $this->imageTypeSubFolder;
+        $this->savePath =  public_path() . '/img/' . $this->imageTypeSubFolder . '/' . $id;
     }
 
     /**
-     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteImages(int $id)
+    public function deleteProcessedImages()
     {
-        foreach (glob($this->getBasepath($id) . '*.*') as $filePath) {
+        foreach (glob($this->savePath . '*.*') as $filePath) {
             unlink($filePath);
         }
-        return back();
     }
 
     /**
      * @param $path
      * @return string
      */
-    private function getPixelated(string $path): string
+    private function getPixelatedImageName(string $path): string
     {
         $explPath = explode('.', $path);
         $filename = $explPath[sizeof($explPath) - 2];
@@ -70,9 +74,9 @@ trait ImageProcessor
         return $pixelatedPath;
     }
 
-    public function setImageFormats()
+    public function setImageFormats(array $imageFormats)
     {
-
+        $this->imageFormats = $imageFormats;
     }
 
     /**
@@ -81,30 +85,8 @@ trait ImageProcessor
      * @param string $basePath
      * @return \array[][]
      */
-    private function getImageFormats(string $basePath): array
+    private function getImageFormats(): array
     {
-        $formats = [
-            self::ORIENTATION_LANDSCAPE => [
-                [
-                    'base_size' => 1200,
-                    'path' => $basePath . '_landscape_big.jpg',
-                ],
-                [
-                    'base_size' => 60,
-                    'path' => $basePath . '_landscape_thumb.jpg',
-                ]
-            ],
-            self::ORIENTATION_PORTRAIT => [
-                [
-                    'base_size' => 900,
-                    'path' => $basePath . '_portrait_big.jpg',
-                ],
-                [
-                    'base_size' => 60,
-                    'path' => $basePath . '_portrait_thumb.jpg',
-                ]
-            ]
-        ];
-        return $formats;
+        return $this->imageFormats;
     }
 }
