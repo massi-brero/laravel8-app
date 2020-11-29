@@ -111,7 +111,7 @@ class HobbyController extends MyHobbiesBaseController
             ]
         );
 
-        $this->saveImages($request, $hobby);
+        $this->saveImages($request, $hobby->id);
 
         $hobby->update(
             $request->all()

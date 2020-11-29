@@ -79,16 +79,11 @@ class UserController extends MyHobbiesBaseController
             ]
         );
 
-        $this->processImage(
-            $request,
-            $this->getImageFormats(
-                $this->setImageBasepath($request, $user->id)
-            )
-        );
-
         $user->update(
             $request->all()
         );
+
+        $this->saveImages($request, auth()->user()->id);
 
         return redirect('/home');
     }

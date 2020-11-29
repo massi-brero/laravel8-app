@@ -17,27 +17,12 @@ trait ImageProcessor
 
     private function processImage(Request $request): void
     {
-
-        $formats = $this->getImageFormats();
         if ($request->bild) {
             $image = Image::make($request->bild);
             $width = $image->width();
             $height = $image->height();
 
-            $orientation = $width > $height ? $this->orientationLandscape : $this->orientationPortrait;;
-
-            foreach ($formats[$orientation] as $format) {
-                $newImage = Image::make($request->bild);
-                if ($orientation === $this->orientationLandscape) {
-                    $newImage->widen($format['base_size']);
-                } else {
-                    $newImage->heighten($format['base_size']);
-                }
-                $newImage->save($this->savePath . $format['imgName']);
-                $pixelatedPath = $this->getPixelatedImageName($this->savePath . $format['imgName']);
-                $newImage->pixelate(16)
-                         ->save($pixelatedPath);
-            }
+            $this->makeAndStoreImages($width, $height, $request);
         }
     }
 
@@ -88,5 +73,30 @@ trait ImageProcessor
     private function getImageFormats(): array
     {
         return $this->imageFormats;
+    }
+
+    /**
+     * @param int $width
+     * @param int $height
+     * @param array $formats
+     * @param Request $request
+     */
+    private function makeAndStoreImages(int $width, int $height, Request $request): void
+    {
+        $orientation = $width > $height ? $this->orientationLandscape : $this->orientationPortrait;;
+        $formats = $this->getImageFormats();
+
+        foreach ($formats[$orientation] as $format) {
+            $newImage = Image::make($request->bild);
+            if ($orientation === $this->orientationLandscape) {
+                $newImage->widen($format['base_size']);
+            } else {
+                $newImage->heighten($format['base_size']);
+            }
+            $newImage->save($this->savePath . $format['imgName']);
+            $pixelatedPath = $this->getPixelatedImageName($this->savePath . $format['imgName']);
+            $newImage->pixelate(16)
+                     ->save($pixelatedPath);
+        }
     }
 }
