@@ -52,7 +52,7 @@ class User extends Authenticatable
         'email',
         'password',
         'motto',
-        'uerber_mich'
+        'ueber_mich'
     ];
 
     /**

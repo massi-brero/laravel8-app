@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <h3>{{$user->name}}</h3>
-                                <p><b>Motto: {{$user->motto}}</b></p>
+                                <p><b>Motto: {{ $user->motto }}</b></p>
                                 <p>{{ $user->ueber_mich }}</p>
                                 <h5>Hobbies von {{ $user->name }}</h5>
                                 @if($user->hobbies->count() > 0)

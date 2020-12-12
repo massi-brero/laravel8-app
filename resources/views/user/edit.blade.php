@@ -5,27 +5,28 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Hobby bearbeiten</div>
+                    <div class="card-header">User bearbeiten</div>
                     <div class="card-body">
-                        <form action="/hobby/{{ $hobby->id }}" method="post" enctype="multipart/form-data"
+                        <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data"
                               autocomplete="off">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Motto</label>
                                 <input type="text"
-                                       class="form-control {{ $errors->has('name') ? 'border-danger' : '' }}"
-                                       id="name"
-                                       name="name"
-                                       value="{{ $hobby->name ?? old('name') }}">
-                                <small class="text text-danger">{!! $errors->first('name') !!}</small>
+                                       class="form-control {{ $errors->has('motto') ? 'border-danger' : '' }}"
+                                       id="motto"
+                                       name="motto"
+                                       value="{{ $user->motto ?? old('motto') }}">
+                                <small class="text text-danger">{!! $errors->first('motto') !!}</small>
                             </div>
                             <div class="mb-2">
-                                @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_big.jpg'))
-                                    <img class="edit-img" src="/img/hobby/{{ $hobby->id  }}_landscape_big.jpg"
+                                @if(file_exists('img/user/' . $user->id  . '_landscape_big.jpg'))
+                                    <img class="edit-img" src="/img/user/{{ $user->id  }}_landscape_big.jpg"
                                          alt="thumb">
                                     <div class="float-right">
-                                        <a class="btn btn-small btn-danger" href="/hobby/{{ $hobby->id }}/delete-image">Bild löschen</a>
+                                        <a class="btn btn-small btn-danger" href="/user/{{ $user->id }}/delete-image">Bild
+                                            löschen</a>
                                     </div>
                                 @else()
                                     <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
@@ -43,11 +44,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="beschreibung">Beschreibung</label>
-                                <textarea class="form-control {{ $errors->has('beschreibung') ? 'border-danger' : '' }}"
-                                          id="beschreibung"
-                                          name="beschreibung">{{ $hobby->beschreibung ?? old('beschreibung') }}</textarea>
-                                <small class="text text-danger">{!! $errors->first('beschreibung') !!}</small>
+                                <label for="beschreibung">Über mich</label>
+                                <textarea class="form-control"
+                                          id="ueber_mich"
+                                          name="ueber_mich">{{ $user->ueber_mich ?? old('ueber_mich') }}</textarea>
                             </div>
                             <input type="submit" class="btn btn-primary btn-sm mt-3 float-left" value="Absenden"/>
                         </form>

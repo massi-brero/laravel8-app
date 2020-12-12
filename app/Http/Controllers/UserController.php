@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hobby;
 use App\Models\User;
 use App\Traits\ImageProcessor;
 use Illuminate\Contracts\View\View;
@@ -51,7 +50,8 @@ class UserController extends MyHobbiesBaseController
      */
     public function show(User $user): View
     {
-        return view('user.show')->with('user', $user);
+        $completeUser = User::find($user->id);
+        return view('user.show')->with('user', $completeUser);
     }
 
     /**
@@ -60,7 +60,8 @@ class UserController extends MyHobbiesBaseController
      */
     public function edit(User $user): View
     {
-        return view('user.edit')->with('user', $user);
+        $completeUser = User::find($user->id);
+        return view('user.edit')->with('user', $completeUser);
     }
 
     /**
