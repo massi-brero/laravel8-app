@@ -15,11 +15,12 @@ class MyHobbiesBaseController extends Controller
     /**
      * @param Request $request
      * @param int $id
+     * @param string $entity
      */
-    public function saveImages(Request $request, int $id): void
+    public function saveImages(Request $request, int $id, string $entity): void
     {
         $this->setImageBasepath($request, $id);
-        $this->setImageFormats(\Config::get('constants.images.formats.hobby'));
+        $this->setImageFormats(\Config::get('constants.images.formats.' . $entity));
         $this->processImage($request);
     }
 

@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class UserController extends MyHobbiesBaseController
 {
-
-    use ImageProcessor;
-
     /**
      * Display a listing of the resource.
      *
@@ -80,11 +77,11 @@ class UserController extends MyHobbiesBaseController
             ]
         );
 
+        $this->saveImages($request, auth()->user()->id, 'user');
+
         $user->update(
             $request->all()
         );
-
-        $this->saveImages($request, auth()->user()->id);
 
         return redirect('/home');
     }

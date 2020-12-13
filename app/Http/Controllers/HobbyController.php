@@ -61,7 +61,7 @@ class HobbyController extends MyHobbiesBaseController
         );
         $hobby->save();
 
-        $this->saveImages($request, $hobby->id);
+        $this->saveImages($request, $hobby->id, 'hobby');
 
         return redirect('/hobby/' . $hobby->id)->with('meldg_hinweis', 'Bitte weise ein paar Tags zu ');
 
@@ -111,7 +111,7 @@ class HobbyController extends MyHobbiesBaseController
             ]
         );
 
-        $this->saveImages($request, $hobby->id);
+        $this->saveImages($request, $hobby->id, 'hobby');
 
         $hobby->update(
             $request->all()
