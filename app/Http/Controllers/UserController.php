@@ -77,7 +77,7 @@ class UserController extends MyHobbiesBaseController
             ]
         );
 
-        $this->saveImages($request, auth()->user()->id, 'user');
+        $this->saveImages($request, $user->id, 'user');
 
         $user->update(
             $request->all()
