@@ -21,16 +21,7 @@
                                 <small class="text text-danger">{!! $errors->first('motto') !!}</small>
                             </div>
                             <div class="mb-2">
-                                @if(file_exists('img/user/' . $user->id  . '_landscape_big.jpg'))
-                                    <img class="edit-img" src="/img/user/{{ $user->id  }}_landscape_big.jpg"
-                                         alt="thumb">
-                                    <div class="float-right">
-                                        <a class="btn btn-small btn-danger" href="/user/{{ $user->id }}/delete-image">Bild
-                                            löschen</a>
-                                    </div>
-                                @else()
-                                    <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
-                                @endif
+                                @include('user.user-image-big')
                             </div>
                             <div class="form-group">
                                 <div class="form-group">

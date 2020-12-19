@@ -12,22 +12,18 @@
                             @foreach($hobbies as $hobby)
                                 <li class="list-group-item">
 
-                                    <a class="mr-1" title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
-                                        @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_thumb.jpg'))
-                                            <img src="/img/hobby/{{ $hobby->id  }}_landscape_thumb.jpg" alt="thumb">
-                                        @else()
-                                            <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
-                                        @endif
-                                    </a>
+                                    @include('hobby.hobby-image-small')
 
                                     {{ $hobby->name }}
 
                                     <a class="ml-2" href="/hobby/{{ $hobby->id }}">Detailansicht</a>
 
                                     <span class="mx-2">Von <a
-                                            href="/user/{{$hobby->user->id}}">{{ $hobby->user->name }}</a> ( {{ $hobby->user->hobbies->count() }} Hobbies)
-                                    <a href="/user/{{ $hobby->user->id }}"><img class="rounded"
-                                                                                src="/img/thumb_hoch.jpg"></a>
+                                            href="/user/{{$hobby->user->id}}">{{ $hobby->user->name }}</a>
+                                        ( {{ $hobby->user->hobbies->count() }} Hobbies)
+                                    <a href="/user/{{ $hobby->user->id }}">
+                                        @include('user.user-image-small')
+                                    </a>
                                     </span>
 
                                     <a class="ml-2 btn btn-sm btn-outline-primary"

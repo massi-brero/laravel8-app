@@ -32,7 +32,7 @@
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <img class="img-thumbnail" src="/img/300x400.jpg" alt="{{ auth()->user()->name }}">
+                                @include('user.auth-user-image-big')
                             </div>
                         </div>
 
@@ -45,31 +45,26 @@
                                     <li class="list-group-item">
 
 
-                                            @if(file_exists('img/hobby/' . $hobby->id  . '_landscape_thumb.jpg'))
-                                            <a class="mr-1" title="Details anzeigen" href="/hobby/{{ $hobby->id }}">
-                                                <img src="/img/hobby/{{ $hobby->id  }}_landscape_thumb.jpg" alt="thumb">
-                                            </a>
-                                            @else()
-                                                <img class="thumb-landscape" src="/img/400x300.jpg" alt="thumb">
-                                            @endif
+                                        @include('hobby.hobby-image-small')
 
-                                            {{ $hobby->name }} <a class="ml-2" href="/hobby/{{ $hobby->id }}">Detailansicht</a>
+                                        {{ $hobby->name }} <a class="ml-2"
+                                                              href="/hobby/{{ $hobby->id }}">Detailansicht</a>
 
-                                            <a class="ml-2 btn btn-sm btn-outline-primary"
-                                               href="/hobby/{{ $hobby->id }}/edit"><i class="fas fa-edit"></i>
-                                                Bearbeiten</a>
-                                            <form style="display: inline;" action="/hobby/{{ $hobby->id }}"
-                                                  method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input class="btn btn-outline-danger btn-sm ml-2" type="submit"
-                                                       value="Löschen">
-                                            </form>
-                                            <div class="float-right">{{ $hobby->created_at->diffForHumans() }}</div>
-                                            <br>
-                                            @foreach($hobby->tags as $tag)
-                                                <a class="badge badge-{{$tag->style}}"
-                                                   href="/hobby/tag/{{ $tag->id }}">{{ $tag->name }}</a>
+                                        <a class="ml-2 btn btn-sm btn-outline-primary"
+                                           href="/hobby/{{ $hobby->id }}/edit"><i class="fas fa-edit"></i>
+                                            Bearbeiten</a>
+                                        <form style="display: inline;" action="/hobby/{{ $hobby->id }}"
+                                              method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input class="btn btn-outline-danger btn-sm ml-2" type="submit"
+                                                   value="Löschen">
+                                        </form>
+                                        <div class="float-right">{{ $hobby->created_at->diffForHumans() }}</div>
+                                        <br>
+                                        @foreach($hobby->tags as $tag)
+                                            <a class="badge badge-{{$tag->style}}"
+                                               href="/hobby/tag/{{ $tag->id }}">{{ $tag->name }}</a>
                                         @endforeach
                                     </li>
                                 @endforeach

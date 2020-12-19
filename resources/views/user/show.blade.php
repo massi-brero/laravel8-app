@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                             <div class="col-md-3">
-                                <img class="img-thumbnail" src="/img/300x400.jpg" alt="{{ $user->name }}">
+                                @include('user.user-image-big')
                             </div>
                         </div>
 

@@ -42,7 +42,7 @@ return [
                     ],
                     ORIENTATION_PORTRAIT => [
                         [
-                            'base_size' => 900,
+                            'base_size' => 300,
                             'imgName' => '_portrait_big.jpg',
                         ],
                         [
