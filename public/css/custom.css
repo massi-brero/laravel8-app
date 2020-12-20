@@ -1,0 +1,8 @@
+.hobby-details {
+    display: flex;
+    align-items: center;
+}
+
+.btn-action-group {
+    margin-left: auto;
+}
