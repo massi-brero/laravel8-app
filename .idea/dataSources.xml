@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="mysql-docker-myhobbies" uuid="fc0e70cd-a543-42d2-9a01-8e8aae623be1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/myhobbies_testing</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="myhobbies@localhost" uuid="48a4e1e4-047d-4015-b62b-50bdb6e94376">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:8889/myhobbies</jdbc-url>
+    </data-source>
+  </component>
+</project>
