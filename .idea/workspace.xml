@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bcbcdb1-8de0-4715-ac2a-3ed03a2a4de6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HobbyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HobbyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/hobby/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hobby/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +263,8 @@
       <workItem from="1608463711645" duration="5026000" />
       <workItem from="1608576603916" duration="572000" />
       <workItem from="1608577753582" duration="1413000" />
-      <workItem from="1608579683717" duration="1373000" />
+      <workItem from="1608579683717" duration="1653000" />
+      <workItem from="1608643483715" duration="691000" />
     </task>
     <task id="LOCAL-00001" summary="image risizing">
       <created>1605454331054</created>
@@ -381,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608479344259</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="auth 1">
+      <created>1608582569111</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1608582569111</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +409,8 @@
     <MESSAGE value="User pics refactoring" />
     <MESSAGE value="User pics refactoring 2" />
     <MESSAGE value="improved layout a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved layout a bit" />
+    <MESSAGE value="auth 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth 1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="85" y="27" key="#CLI_Interpreters" timestamp="1605966417586">
@@ -446,11 +451,11 @@
     </state>
     <state x="0" y="0" width="593" height="900" key="#xdebugger.evaluate/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1607876698658" />
     <state x="0" y="0" width="593" height="900" key="#xdebugger.evaluate/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1605451059979" />
-    <state x="238" y="0" key="CommitChangelistDialog2" timestamp="1608479344104">
+    <state x="238" y="0" key="CommitChangelistDialog2" timestamp="1608582568697">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1606053863288" />
-    <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608479344104" />
+    <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608582568697" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1606660395960" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607877049348" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607783896772" />
@@ -605,13 +610,13 @@
     <state x="0" y="0" key="SettingsEditor/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1606042071092" />
     <state x="0" y="0" key="SettingsEditor/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608581441830" />
     <state x="0" y="0" width="1201" height="900" key="SettingsEditor/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1605966791297" />
-    <state width="625" height="500" key="SwitcherDM" timestamp="1608477970074">
+    <state width="625" height="500" key="SwitcherDM" timestamp="1608644342968">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/-1080.115.1080.785@0.0.1440.900" timestamp="1605642121475" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1605645085310" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-155.1920.1055@0.0.1440.900" timestamp="1608390387471" />
-    <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608477970074" />
+    <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608644342968" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1607876874865" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607873930904" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1607782709354" />
@@ -659,12 +664,12 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="207" width="838" height="1032" key="run.anything.popup/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1605912247191" />
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1608582164364">
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1608644345095">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1606051850898" />
     <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900/1440.-155.1920.1055@0.0.1440.900" timestamp="1608581820624" />
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608582164364" />
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608644345095" />
     <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607874434527" />
     <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607782978695" />
   </component>
