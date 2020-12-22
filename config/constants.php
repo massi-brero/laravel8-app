@@ -1,6 +1,6 @@
 <?php
-const ORIENTATION_LANDSCAPE = 0;
-const ORIENTATION_PORTRAIT = 01;
+if (!defined('ORIENTATION_LANDSCAPE')) define('ORIENTATION_LANDSCAPE', 0);
+if (!defined('ORIENTATION_PORTRAIT')) define('ORIENTATION_PORTRAIT', 1);
 
 return [
     'images' => [
