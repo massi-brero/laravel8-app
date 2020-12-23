@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
 class HobbyController extends MyHobbiesBaseController
@@ -101,6 +102,7 @@ class HobbyController extends MyHobbiesBaseController
      */
     public function edit(Hobby $hobby): View
     {
+        abort_unless(Gate::allows('update', $hobby), 403);
         return view('hobby.edit')->with('hobby', $hobby);
     }
 
@@ -113,6 +115,8 @@ class HobbyController extends MyHobbiesBaseController
      */
     public function update(Request $request, Hobby $hobby): View
     {
+        abort_unless(Gate::allows('update', $hobby), 403);
+
         $request->validate(
             [
                 'name' => 'required|min:5',
@@ -120,9 +124,7 @@ class HobbyController extends MyHobbiesBaseController
                 'bild' => 'mimes:jpg,jpeg,png,bmp,gif'
             ]
         );
-
         $this->saveImages($request, $hobby->id, 'hobby');
-
         $hobby->update(
             $request->all()
         );
@@ -132,7 +134,6 @@ class HobbyController extends MyHobbiesBaseController
         ]);
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -141,12 +142,18 @@ class HobbyController extends MyHobbiesBaseController
      * @throws \Exception
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function destroy(Hobby $hobby): RedirectResponse
+    public function destroy(Hobby $hobby): \Illuminate\View\View
     {
+        if (auth()->guest()) {
+            abort(403);
+        }
+
+        abort_unless(Gate::allows('delete', $hobby), 403);
+
         $hobbyName = $hobby->name;
         $hobby->delete();
 
-        return back()->with([
+        return $this->index()->with([
             'meldg_success' => 'Das Hobby ' . $hobbyName . ' wurde gelöscht!'
         ]);
     }
