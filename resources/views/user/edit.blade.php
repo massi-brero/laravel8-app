@@ -20,7 +20,7 @@
                                        value="{{ $user->motto ?? old('motto') }}">
                                 <small class="text text-danger">{!! $errors->first('motto') !!}</small>
                             </div>
-                            <div class="mb-2">
+                            <div class="w-25">
                                 @include('user.user-image-big')
                             </div>
                             <div class="form-group">

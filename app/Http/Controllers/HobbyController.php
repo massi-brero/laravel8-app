@@ -102,6 +102,11 @@ class HobbyController extends MyHobbiesBaseController
      */
     public function edit(Hobby $hobby): View
     {
+
+        if(auth()->guest()) {
+            abort(403);
+        }
+
         abort_unless(Gate::allows('update', $hobby), 403);
         return view('hobby.edit')->with('hobby', $hobby);
     }

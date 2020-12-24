@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Traits\ImageProcessor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends MyHobbiesBaseController
 {
@@ -66,6 +66,12 @@ class UserController extends MyHobbiesBaseController
      */
     public function edit(User $user): View
     {
+        if(auth()->guest()) {
+            abort(403);
+        }
+
+        abort_unless(Gate::allows('update', $user), 403);
+
         $completeUser = User::find($user->id);
         return view('user.edit')->with('user', $completeUser);
     }
@@ -79,6 +85,7 @@ class UserController extends MyHobbiesBaseController
      */
     public function update(Request $request, User $user): RedirectResponse
     {
+        abort_unless(Gate::allows('update', $user), 403);
         $request->validate(
             [
                 'motto' => 'required|min:5',
