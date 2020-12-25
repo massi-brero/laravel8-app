@@ -6,7 +6,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Alle Hobbies</div>
-
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach($hobbies as $hobby)
@@ -22,10 +21,10 @@
                                         <span class="mx-2">von <a
                                                 href="/user/{{$hobby->user->id}}">{{ $hobby->user->name }}</a>
                                         ( {{ $hobby->user->hobbies->count() }} Hobbies)
-                                    <a href="/user/{{ $hobby->user->id }}">
-                                        @include('user.user-image-small')
-                                    </a>
-                                    </span>
+                                        <a href="/user/{{ $hobby->user->id }}">
+                                            @include('user.user-image-small')
+                                        </a>
+                                        </span>
 
                                         <div class="btn-action-group">
                                             {{ $hobby->created_at->diffForHumans() }}
