@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bcbcdb1-8de0-4715-ac2a-3ed03a2a4de6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/hobby/hobby-details.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/hobby/hobby-list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/hobby/filteredByTag.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hobby/filteredByTag.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hobby/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hobby/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +266,7 @@
       <workItem from="1608643483715" duration="4728000" />
       <workItem from="1608716314115" duration="4150000" />
       <workItem from="1608816645423" duration="1596000" />
-      <workItem from="1608914110389" duration="3446000" />
+      <workItem from="1608914110389" duration="3701000" />
     </task>
     <task id="LOCAL-00001" summary="image risizing">
       <created>1605454331054</created>
@@ -416,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608819005189</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="refactoring for hobby&#10;list">
+      <created>1608926879985</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1608926879985</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +451,8 @@
     <MESSAGE value="create Admin" />
     <MESSAGE value="hobby policies" />
     <MESSAGE value="Authorization user edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Authorization user edits" />
+    <MESSAGE value="refactoring for hobby&#10;list" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring for hobby&#10;list" />
   </component>
   <component name="WindowStateProjectService">
     <state x="85" y="27" key="#CLI_Interpreters" timestamp="1605966417586">
@@ -488,11 +495,11 @@
     </state>
     <state x="0" y="0" width="593" height="900" key="#xdebugger.evaluate/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1607876698658" />
     <state x="0" y="0" width="593" height="900" key="#xdebugger.evaluate/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1605451059979" />
-    <state x="238" y="0" key="CommitChangelistDialog2" timestamp="1608819004909">
+    <state x="238" y="0" key="CommitChangelistDialog2" timestamp="1608926879782">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1606053863288" />
-    <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608648750854" />
+    <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608926879782" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1606660395960" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607877049348" />
     <state x="238" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1608819004909" />
@@ -657,10 +664,10 @@
     </state>
     <state x="383" y="134" key="NewPhpClassDialog/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1606652258011" />
     <state x="383" y="134" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1608719778718" />
-    <state x="515" y="366" key="NewPhpFileDialog" timestamp="1608926135657">
+    <state x="515" y="366" key="NewPhpFileDialog" timestamp="1608927005509">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="515" y="366" key="NewPhpFileDialog/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608926135657" />
+    <state x="515" y="366" key="NewPhpFileDialog/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608927005509" />
     <state x="515" y="366" key="NewPhpFileDialog/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1606649294465" />
     <state x="0" y="0" width="1201" height="900" key="SettingsEditor" timestamp="1608581441830">
       <screen x="0" y="0" width="1440" height="900" />
@@ -678,11 +685,11 @@
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1607876874865" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607873930904" />
     <state width="625" height="500" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1608818817151" />
-    <state x="220" y="124" key="Vcs.Push.Dialog.v2" timestamp="1608914865241">
+    <state x="220" y="124" key="Vcs.Push.Dialog.v2" timestamp="1608926883398">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1080.90.1080.810@0.0.1440.900" timestamp="1606053878401" />
-    <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608914865241" />
+    <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1608926883398" />
     <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.-368.1920.1055@0.0.1440.900" timestamp="1606660424945" />
     <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.-393.1920.1080@0.0.1440.900" timestamp="1607877052760" />
     <state x="220" y="124" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1608819018811" />

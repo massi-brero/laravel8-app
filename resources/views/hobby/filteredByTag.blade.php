@@ -11,19 +11,7 @@
                         </span>
                         <a class="float-right" href="/hobby">Alle Hobbies anzeigen</a>
                     </div>
-
-                    <div class="card-body">
-                        <ul class="list-group">
-                            @foreach($hobbies as $hobby)
-                                <li class="list-group-item">
-                                    @include('hobby.hobby-details')
-                                </li>
-                            @endforeach
-                        </ul>
-                        <div class="mt-3">
-                            {{ $hobbies->links("pagination::bootstrap-4") }}
-                        </div>
-                    </div>
+                    @include('hobby.hobby-list')
                 </div>
             </div>
         </div>
