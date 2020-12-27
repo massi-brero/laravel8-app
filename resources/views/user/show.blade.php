@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                             <div class="col-md-3">
-                                @include('user.user-image-big')
+                                @include('_partials.user.user-image-big')
                             </div>
                         </div>
 

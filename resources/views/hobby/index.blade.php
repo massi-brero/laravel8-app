@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Alle Hobbies</div>
-                    @include('hobby.hobby-list')</div>
+                    @include('_partials.hobby.hobby-list')</div>
                 </div>
             </div>
         </div>

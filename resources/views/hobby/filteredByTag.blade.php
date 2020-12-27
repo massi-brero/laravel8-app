@@ -11,7 +11,7 @@
                         </span>
                         <a class="float-right" href="/hobby">Alle Hobbies anzeigen</a>
                     </div>
-                    @include('hobby.hobby-list')
+                    @include('_partials.hobby.hobby-list')
                 </div>
             </div>
         </div>

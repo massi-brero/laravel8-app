@@ -2,5 +2,5 @@
     <img class="rounded" src="/img/user/{{ auth()->user()->id }}_portrait_big.jpg"
          alt="user thumb">
 @else()
-    <img class="rounded" src="/img/300x400.jpg" alt="thumb">
+    <img class="rounded w-100" src="/img/300x400.jpg" alt="thumb">
 @endif

@@ -2,7 +2,7 @@
     <ul class="list-group">
         @foreach($hobbies as $hobby)
         <li class="list-group-item">
-            @include('hobby.hobby-details')
+            @include('_partials.hobby.hobby-details')
         </li>
         @endforeach
     </ul>

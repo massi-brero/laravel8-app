@@ -1,4 +1,4 @@
-<div class="hobby-details">@include('hobby.hobby-image-small')
+<div class="hobby-details">@include('_partials.hobby.hobby-image-small')
 
     {{ $hobby->name }} <a class="ml-2"
                           href="/hobby/{{ $hobby->id }}">Detailansicht</a>
@@ -6,7 +6,7 @@
     <span class="mx-2">Von
         <a href="/user/{{$hobby->user->id}}">{{ $hobby->user->name }}</a>
         ( {{ $hobby->user->hobbies->count() }} Hobbies)
-        @include('user.user-image-small')
+        @include('_partials.user.user-image-small')
     </span>
 
     <div class="btn-action-group">{{ $hobby->created_at->diffForHumans() }}

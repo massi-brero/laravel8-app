@@ -32,7 +32,7 @@
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                @include('user.auth-user-image-big')
+                                @include('_partials.user.auth-user-image-big')
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                                     <li class="list-group-item">
 
 
-                                        @include('hobby.hobby-image-small')
+                                        @include('_partials.hobby.hobby-image-small')
 
                                         {{ $hobby->name }} <a class="ml-2"
                                                               href="/hobby/{{ $hobby->id }}">Detailansicht</a>

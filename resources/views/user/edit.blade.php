@@ -21,7 +21,7 @@
                                 <small class="text text-danger">{!! $errors->first('motto') !!}</small>
                             </div>
                             <div class="w-25">
-                                @include('user.user-image-big')
+                                @include('_partials.user.user-image-big')
                             </div>
                             <div class="form-group">
                                 <div class="form-group">
