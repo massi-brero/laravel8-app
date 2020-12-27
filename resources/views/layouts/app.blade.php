@@ -126,6 +126,11 @@
             </div>
         @endif
         @yield('content')
+        <form id="form-delete-entry" style="display: inline;" action=""
+              method="post">
+            @csrf
+            @method('DELETE')
+        </form>
     </main>
 </div>
 </body>

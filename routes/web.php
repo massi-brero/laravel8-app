@@ -23,7 +23,8 @@ Route::get('/info', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+     ->name('home');
 
 Route::resource('hobby', 'App\Http\Controllers\HobbyController');
 
@@ -31,9 +32,17 @@ Route::resource('tag', 'App\Http\Controllers\TagController');
 
 Route::resource('user', 'App\Http\Controllers\UserController');
 
-Route::get('/hobby/tag/{tag_id}', [App\Http\Controllers\HobbyTagController::class, 'getFilteredHobbies'])->name('hobby_tag');
+Route::get('/hobby/tag/{tag_id}', [App\Http\Controllers\HobbyTagController::class, 'getFilteredHobbies'])
+     ->name('hobby_tag');
 
-Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', [App\Http\Controllers\HobbyTagController::class, 'attachTag'])->name('attach_tag');
-Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', [App\Http\Controllers\HobbyTagController::class, 'detachTag'])->name('detach_tag');
-Route::get('/hobby/{hobby_id}/delete-image', [App\Http\Controllers\HobbyController::class, 'deleteImages'])->name('hobby_delete_image');
-Route::get('/hobby/{user_id}/delete-image', [App\Http\Controllers\UserController::class, 'deleteImages'])->name('user_delete_image');
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', [App\Http\Controllers\HobbyTagController::class, 'attachTag'])
+     ->middleware('auth')
+     ->name('attach_tag');
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', [App\Http\Controllers\HobbyTagController::class, 'detachTag'])
+     ->middleware('auth')
+     ->name('detach_tag');
+
+Route::get('/hobby/{hobby_id}/delete-image', [App\Http\Controllers\HobbyController::class, 'deleteImages'])
+     ->name('hobby_delete_image');
+Route::get('/hobby/{user_id}/delete-image', [App\Http\Controllers\UserController::class, 'deleteImages'])
+     ->name('user_delete_image');
